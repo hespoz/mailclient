@@ -1,6 +1,9 @@
 # mailclient
 This is an small prototype of an email client created with ReactJS. I used nodejs just to serve the messages_sample.json file and the main html page. 
 
+# Approach
+I create a parent component (Index), and then inside it, i add the EmailList -> EmailItem components and the EmailContent component. The Index component is listening for EmailStore changes, this store contains the _EmailList and _EmailSelected attributes(DataSources). So each time that the EmailItem component change the _EmailList (Removing or selecting emails) or the _EmailSelected(Selecting emails) the Index component will render again those EmailStore attributes.
+
 # TODO - add/modify/approach
 
  - More color and more CSS styles.
