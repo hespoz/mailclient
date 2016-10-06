@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import {Panel,PageHeader} from 'react-bootstrap';
+import {PageHeader} from 'react-bootstrap';
 import DateParser from '../components/DateParser';
 
 const emailListStyle = {
@@ -13,14 +13,9 @@ const emailListStyle = {
 
 var EmailContent = React.createClass({
 
-  componentDidMount : function() {
-	console.log("Email Content");
-	console.log(this.props);
-  },
-
   render :function () {
   	if(this.props.email == null || this.props.email == {}){
-      return <h3>Welcome to the askCharlie email component</h3>;
+      return <h3>Welcome to your Inbox!!!</h3>;
     }
 
     return (
@@ -28,22 +23,15 @@ var EmailContent = React.createClass({
 
 					<Col md={12}>
 							<div style={emailListStyle}>
-							    
-									<PageHeader>{this.props.email.subject} <small> - {this.props.email.sender}</small></PageHeader>
-								
+								<PageHeader>{this.props.email.subject} <small> - {this.props.email.sender}</small></PageHeader>
 								<Row>
 									<Col mdOffset={1}><b><DateParser timeSent={this.props.email.time_sent}/></b></Col>
 								</Row>
 								<Row>
-									<Col mdOffset={1}></Col>
-								</Row>
-								<Row>
 									<Col mdOffset={1}>{this.props.email.message}</Col>
 								</Row>
-
 							</div>
 		            </Col>
-	            
     );
   }
 });

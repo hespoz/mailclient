@@ -5,21 +5,21 @@ var EmailAction = {
   getEmailList: function() {
       AppDispatcher.dispatch({
         actionName: 'getEmailList',
-        data: {} // example data
+        data: {} 
       });
   },
 
   removeEmail:function(id){
       AppDispatcher.dispatch({
         actionName: 'removeEmail',
-        data: {uid:id} // example data
+        data: {uid:id}
       });
   },
 
   selectEmail:function(id){
       AppDispatcher.dispatch({
         actionName: 'selectEmail',
-        data: {uid:id} // example data
+        data: {uid:id}
       });
   }
   

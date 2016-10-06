@@ -47,14 +47,10 @@ AppDispatcher.register( function( payload ) {
     switch( payload.actionName ) {
 
         case 'getEmailList':
-
-
             $.getJSON( "/messages_sample.json", function( data ) {
               _EmailList = data;
               EmailStore.emitChange();
-            });
-
-        	
+            });        	
             break;
 
         case 'removeEmail':
@@ -70,7 +66,6 @@ AppDispatcher.register( function( payload ) {
         	break;
         
         case 'selectEmail':
-          console.log("select");
           for(var i=0;i<_EmailList.messages.length;i++){
             if(_EmailList.messages[i].uid==payload.data.uid){
               _EmailSelected = _EmailList.messages[i];
@@ -78,8 +73,6 @@ AppDispatcher.register( function( payload ) {
             }
           }
           EmailStore.emitChange();
-          
-
           break;            
 
     }

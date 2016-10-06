@@ -1,10 +1,10 @@
 import React from 'react';
 import moment from 'moment';
-
+/*
+This component was created to take a long string and just show the first n letters of the string.
+I am not currently using it in this version.
+*/
 var ResumeLabel = React.createClass({
-
-  componentDidMount : function() {
-  },
 
   render :function () {
   	if(this.props.str.length<=this.props.limit){

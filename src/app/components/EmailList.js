@@ -11,12 +11,9 @@ import EmailItem from '../components/EmailItem';
 var EmailList = React.createClass({
 
   render :function () {
-  	console.log(this.props)
-
   	if(this.props.emailList.messages.length==0){
-  		return (<h3>There is not new messages</h3>)
+  		return (<h3>You don't have messages</h3>)
   	}
-
     return (
  
 				<Row>

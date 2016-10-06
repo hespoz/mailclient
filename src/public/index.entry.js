@@ -21371,16 +21371,13 @@
 	
 	
 			render: function render() {
-					console.log(this.props);
-	
 					if (this.props.emailList.messages.length == 0) {
 							return _react2.default.createElement(
 									'h3',
 									null,
-									'There is not new messages'
+									'You don\'t have messages'
 							);
 					}
-	
 					return _react2.default.createElement(
 							_Row2.default,
 							null,
@@ -39203,32 +39200,22 @@
 	  padding: '0px 4px'
 	};
 	
-	var that = null;
 	var EmailItem = _react2.default.createClass({
 	  displayName: 'EmailItem',
 	
 	
-	  getInitialState: function getInitialState() {
-	    that = this;
-	    return {};
-	  },
-	
 	  deleteEmail: function deleteEmail(event) {
-	    console.log(event);
-	    //alert(event.target.id);
 	    _EmailAction2.default.removeEmail(event.target.id);
 	  },
 	
 	  selectEmail: function selectEmail(event) {
 	    _EmailAction2.default.selectEmail(event.target.id);
 	  },
-	  //<ResumeLabel str={this.props.sender} limit={23}/>
+	
 	  render: function render() {
-	    console.log(this.props);
 	    return _react2.default.createElement(
 	      'li',
-	      {
-	        className: 'list-group-item', style: this.props.view != true ? noReadStyle : null },
+	      { className: 'list-group-item', style: this.props.view != true ? noReadStyle : null },
 	      _react2.default.createElement(
 	        _Row2.default,
 	        null,
@@ -39246,7 +39233,7 @@
 	          { md: 4 },
 	          _react2.default.createElement(
 	            _Button2.default,
-	            { id: this.props.uid, bsStyle: 'link', onClick: that.deleteEmail, style: deleteButtonStyle },
+	            { id: this.props.uid, bsStyle: 'link', onClick: this.deleteEmail, style: deleteButtonStyle },
 	            'x'
 	          )
 	        )
@@ -39291,21 +39278,21 @@
 	  getEmailList: function getEmailList() {
 	    _AppDispatcher2.default.dispatch({
 	      actionName: 'getEmailList',
-	      data: {} // example data
+	      data: {}
 	    });
 	  },
 	
 	  removeEmail: function removeEmail(id) {
 	    _AppDispatcher2.default.dispatch({
 	      actionName: 'removeEmail',
-	      data: { uid: id } // example data
+	      data: { uid: id }
 	    });
 	  },
 	
 	  selectEmail: function selectEmail(id) {
 	    _AppDispatcher2.default.dispatch({
 	      actionName: 'selectEmail',
-	      data: { uid: id } // example data
+	      data: { uid: id }
 	    });
 	  }
 	
@@ -39654,8 +39641,6 @@
 	var DateParser = _react2.default.createClass({
 	  displayName: 'DateParser',
 	
-	
-	  componentDidMount: function componentDidMount() {},
 	
 	  render: function render() {
 	    var date = (0, _moment2.default)(this.props.timeSent).format("ddd DD MMM, hh:mm").toString();
@@ -51416,11 +51401,13 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/*
+	This component was created to take a long string and just show the first n letters of the string.
+	I am not currently using it in this version.
+	*/
 	var ResumeLabel = _react2.default.createClass({
 	  displayName: 'ResumeLabel',
 	
-	
-	  componentDidMount: function componentDidMount() {},
 	
 	  render: function render() {
 	    if (this.props.str.length <= this.props.limit) {
@@ -51453,7 +51440,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+			value: true
 	});
 	
 	var _react = __webpack_require__(/*! react */ 1);
@@ -51483,76 +51470,66 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var emailListStyle = {
-		maxHeight: '90%',
-		overflowY: 'scroll'
+			maxHeight: '90%',
+			overflowY: 'scroll'
 	};
 	
 	var EmailContent = _react2.default.createClass({
-		displayName: 'EmailContent',
+			displayName: 'EmailContent',
 	
 	
-		componentDidMount: function componentDidMount() {
-			console.log("Email Content");
-			console.log(this.props);
-		},
+			render: function render() {
+					if (this.props.email == null || this.props.email == {}) {
+							return _react2.default.createElement(
+									'h3',
+									null,
+									'Welcome to your Inbox!!!'
+							);
+					}
 	
-		render: function render() {
-			if (this.props.email == null || this.props.email == {}) {
-				return _react2.default.createElement(
-					'h3',
-					null,
-					'Welcome to the askCharlie email component'
-				);
-			}
-	
-			return _react2.default.createElement(
-				_Col2.default,
-				{ md: 12 },
-				_react2.default.createElement(
-					'div',
-					{ style: emailListStyle },
-					_react2.default.createElement(
-						_reactBootstrap.PageHeader,
-						null,
-						this.props.email.subject,
-						' ',
-						_react2.default.createElement(
-							'small',
-							null,
-							' - ',
-							this.props.email.sender
-						)
-					),
-					_react2.default.createElement(
-						_Row2.default,
-						null,
-						_react2.default.createElement(
+					return _react2.default.createElement(
 							_Col2.default,
-							{ mdOffset: 1 },
+							{ md: 12 },
 							_react2.default.createElement(
-								'b',
-								null,
-								_react2.default.createElement(_DateParser2.default, { timeSent: this.props.email.time_sent })
+									'div',
+									{ style: emailListStyle },
+									_react2.default.createElement(
+											_reactBootstrap.PageHeader,
+											null,
+											this.props.email.subject,
+											' ',
+											_react2.default.createElement(
+													'small',
+													null,
+													' - ',
+													this.props.email.sender
+											)
+									),
+									_react2.default.createElement(
+											_Row2.default,
+											null,
+											_react2.default.createElement(
+													_Col2.default,
+													{ mdOffset: 1 },
+													_react2.default.createElement(
+															'b',
+															null,
+															_react2.default.createElement(_DateParser2.default, { timeSent: this.props.email.time_sent })
+													)
+											)
+									),
+									_react2.default.createElement(
+											_Row2.default,
+											null,
+											_react2.default.createElement(
+													_Col2.default,
+													{ mdOffset: 1 },
+													this.props.email.message
+											)
+									)
 							)
-						)
-					),
-					_react2.default.createElement(
-						_Row2.default,
-						null,
-						_react2.default.createElement(_Col2.default, { mdOffset: 1 })
-					),
-					_react2.default.createElement(
-						_Row2.default,
-						null,
-						_react2.default.createElement(
-							_Col2.default,
-							{ mdOffset: 1 },
-							this.props.email.message
-						)
-					)
-				)
-			);
-		}
+					);
+			}
 	});
 	
 	exports.default = EmailContent;
@@ -51627,12 +51604,10 @@
 	  switch (payload.actionName) {
 	
 	    case 'getEmailList':
-	
 	      _jquery2.default.getJSON("/messages_sample.json", function (data) {
 	        _EmailList = data;
 	        EmailStore.emitChange();
 	      });
-	
 	      break;
 	
 	    case 'removeEmail':
@@ -51648,7 +51623,6 @@
 	      break;
 	
 	    case 'selectEmail':
-	      console.log("select");
 	      for (var i = 0; i < _EmailList.messages.length; i++) {
 	        if (_EmailList.messages[i].uid == payload.data.uid) {
 	          _EmailSelected = _EmailList.messages[i];
@@ -51656,7 +51630,6 @@
 	        }
 	      }
 	      EmailStore.emitChange();
-	
 	      break;
 	
 	  }

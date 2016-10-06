@@ -20,40 +20,28 @@ const deleteButtonStyle = {
 }
 
 
-var that = null;
 var EmailItem = React.createClass({
-
-
-  getInitialState: function () {
-	that = this;
-	return {
-	};
-  },	
   
   deleteEmail : function(event){
-  	console.log(event)
-  	//alert(event.target.id);
   	EmailAction.removeEmail(event.target.id);
   },
 
   selectEmail : function(event){
     EmailAction.selectEmail(event.target.id);
   },
-//<ResumeLabel str={this.props.sender} limit={23}/>
+
   render : function() {
-  	console.log(this.props)
     return (
-      <li
-        className="list-group-item" style={this.props.view != true ? noReadStyle : null}>
+      <li className="list-group-item" style={this.props.view != true ? noReadStyle : null}>
         	<Row >
         		<Col md={8} >
 					     <a id={this.props.uid} href="javascript:void(0);" onClick={this.selectEmail}>{this.props.sender}</a>
         		</Col>
         		<Col md={4}>
-					     <Button id={this.props.uid} bsStyle="link" onClick={that.deleteEmail} style={deleteButtonStyle}>x</Button>
+					     <Button id={this.props.uid} bsStyle="link" onClick={this.deleteEmail} style={deleteButtonStyle}>x</Button>
         		</Col>
         	</Row>
-			<Row>
+			    <Row>
         		<Col md={6}>
               {this.props.subject}
         		</Col>
@@ -61,10 +49,6 @@ var EmailItem = React.createClass({
               <DateParser timeSent={this.props.time_sent}/>
         		</Col>
         	</Row>
-        
-        
-		
-
       </li>
     );
   }
