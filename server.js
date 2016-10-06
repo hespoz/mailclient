@@ -1,4 +1,4 @@
-//server.js
+//server.js - I used expressjs to handle the routers.
 var express = require('express');
 var http = require('http'); 
 var path = require('path');
